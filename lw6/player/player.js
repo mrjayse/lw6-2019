@@ -1,63 +1,69 @@
-function Song(sName, sLength) {
-  this.songName = sName;
-  this.songLength = sLength;
+class Song {
+  constructor(sName, sLength) {
+    this.name = sName;
+    this.length = sLength;
+  }
 }
 
-function PlayerList() {
-  this.list = [];
-  this.status = 'stop';
-  this.currentTrack = '';
-  this.currentTrackIndex = 0;
+class PlayerList {
+  constructor() {
+    this.list = [];
+    this.status = 'stop';
+    this.currentTrack = '';
+    this.currentTrackIndex = 0;
+  }
 
-  this.next = function () {
-    if (++this.currentTrackIndex < this.list.length) { 
-      this.currentTrack = this.list[this.currentTrackIndex].songName;
+  next() {
+    if (++this.currentTrackIndex < this.list.length) {
+      this.currentTrack = this.list[this.currentTrackIndex].name;
     }
     else {
       this.currentTrackIndex = 0;
-      this.currentTrack = this.list[this.currentTrackIndex].songName;
+      this.currentTrack = this.list[this.currentTrackIndex].name;
     }
     this.status = 'play';
   }
 
-  this.prev = function () {
+  prev() {
     if (--this.currentTrackIndex >= 0) {
-      this.currentTrack = this.list[this.currentTrackIndex].songName;
+      this.currentTrack = this.list[this.currentTrackIndex].name;
     }
     else {
       this.currentTrackIndex = this.list.length - 1;
-      this.currentTrack = this.list[this.currentTrackIndex].songName;
+      this.currentTrack = this.list[this.currentTrackIndex].name;
     }
     this.status = 'play';
   }
 }
 
-function Player(playerList) {
-  this.playerList = playerList;
+class Player {
+  constructor(nPlayerList) {
+    this.playerList = nPlayerList;
+  }
 
-  this.display = function () {
+  display() {
     return 'Track: ' + this.playerList.currentTrack + ' Status: ' + this.playerList.status;
   };
 
-  this.play = function () {
+  play() {
     this.playerList.status = 'play';
-    this.playerList.currentTrack = this.playerList.list[this.playerList.currentTrackIndex].songName;
+    this.playerList.currentTrack = this.playerList.list[this.playerList.currentTrackIndex].name;
   };
 
-  this.stop = function () {
+  stop() {
     this.playerList.status = 'stop';
     this.playerList.currentTrack = '';
   };
 
-  this.pause = function () {
+  pause() {
     this.playerList.status = 'pause';
   };
 
-  this.next = function () {
+  next() {
     this.playerList.next();
   };
 
-  this.prev = function () {
+  prev() {
     playerList.prev();
   };
 }
