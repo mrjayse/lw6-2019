@@ -6,14 +6,14 @@ class Song {
 }
 
 class PlayerList {
-  constructor() {
-    this.list = [];
+  constructor(songList) {
+    this.list = [].concat(songList);
     this.status = 'stop';
     this.currentTrack = '';
     this.currentTrackIndex = 0;
-  }
+  } 
 
-  next() {
+  Next() {
     if (++this.currentTrackIndex < this.list.length) {
       this.currentTrack = this.list[this.currentTrackIndex].name;
     }
@@ -24,7 +24,7 @@ class PlayerList {
     this.status = 'play';
   }
 
-  prev() {
+  Prev() {
     if (--this.currentTrackIndex >= 0) {
       this.currentTrack = this.list[this.currentTrackIndex].name;
     }
@@ -39,31 +39,61 @@ class PlayerList {
 class Player {
   constructor(nPlayerList) {
     this.playerList = nPlayerList;
+    this.equalizer = new Equalizer();
   }
 
-  display() {
-    return 'Track: ' + this.playerList.currentTrack + ' Status: ' + this.playerList.status;
+  GetFrequency() {
+      return this.equalizer.GetBands();
+  }
+
+  SetFrequency(one, two, three) {
+      this.equalizer.SetBands(one, two, three);
+  }
+
+  Display() {
+    return 'Track: ' + this.playerList.currentTrack + '; Status: ' + this.playerList.status;
   };
 
-  play() {
+  Play() {
     this.playerList.status = 'play';
     this.playerList.currentTrack = this.playerList.list[this.playerList.currentTrackIndex].name;
+    console.log('Now playing: ' + this.Display());
   };
 
-  stop() {
+  Stop() {
     this.playerList.status = 'stop';
     this.playerList.currentTrack = '';
   };
 
-  pause() {
+  Pause() {
     this.playerList.status = 'pause';
   };
 
-  next() {
-    this.playerList.next();
+  Next() {
+    this.playerList.Next();
+    console.log('Now playing: ' + this.Display());
   };
 
-  prev() {
-    playerList.prev();
+  Prev() {
+    this.playerList.Prev();
+    console.log('Now playing: ' + this.Display());
   };
+}
+
+class Equalizer {
+  constructor() {
+    this.bandOne = 5;
+    this.bandTwo = 5;
+    this.bandThree = 5;
+  }
+
+  SetBands(one, two, three) {
+    this.bandOne = one;
+    this.bandTwo = two;
+    this.bandThree = three;
+  }
+
+  GetBands() {
+    return 'Band one: ' + this.bandOne + '; Band two: ' + this.bandTwo + '; Band three: ' + this.bandThree;
+  }
 }
