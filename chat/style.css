@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-#box {
+#chat {
   display: flex;
   flex-direction: column;
   margin: 15px auto;
@@ -11,7 +11,7 @@
   width: 95vw;
 }
 
-#chat-window {
+#chat__window {
   display: flex;
   flex-direction: column;
   height: 90%;
@@ -21,11 +21,11 @@
   overflow-x: hidden;
 }
 
-.mes-row {
+.chat__row {
   font-size: 1.5rem;
 }
 
-.mes-box {
+.chat__box {
   display: inline-block;
   border: 1px solid black;
   margin: 10px;
@@ -34,17 +34,17 @@
   overflow-wrap: break-word;
 }
 
-.mes-left {
+.left {
   background-color: orangered;
   float: left;
 }
 
-.mes-right {
+.right {
   background-color: greenyellow;
   float: right;
 }
 
-#chat-input {
+#chat__input {
   margin-top: auto;
   height: 8%;
   width: 100%;

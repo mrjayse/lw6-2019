@@ -1,6 +1,6 @@
 class ChatUI {
   constructor() {
-    this.chatWindow = document.getElementById("chat-window");
+    this.chatWindow = document.getElementById("chat__window");
   }
 
   sendMessage(message) {
@@ -10,8 +10,8 @@ class ChatUI {
       var messageRow = document.createElement("div");
       var messageBox = document.createElement("div");
 
-      messageRow.classList.add("mes-row");
-      messageBox.classList.add("mes-box", "mes-right");
+      messageRow.classList.add("chat__row");
+      messageBox.classList.add("chat__box", "right");
 
       messageBox.innerText = message;
       messageRow.appendChild(messageBox);
